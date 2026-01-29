@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Запись в STRITH BARBERSHOP</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 30px 40px;
+      margin: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      max-width: 450px;
+      width: 100%;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #222;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 6px;
+      font-weight: bold;
+      color: #444;
+    }
+    input[type=text], input[type=tel], select, input[type=date], input[type=time] {
+      width: 100%;
+      padding: 10px;
+      border: 1.8px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      box-sizing: border-box;
+      transition: border-color 0.3s;
+    }
+    input[type=text]:focus, input[type=tel]:focus, select:focus, input[type=date]:focus, input[type=time]:focus {
+      border-color: #ff6600;
+      outline: none;
+    }
+    button {
+      margin-top: 25px;
+      width: 100%;
+      background-color: #ff6600;
+      border: none;
+      color: white;
+      font-size: 1.1rem;
+      padding: 12px;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #e65c00;
+    }
+    .note {
+      font-size: 0.85rem;
+      color: #888;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Записаться в STRITH BARBERSHOP</h1>
+  <form id="bookingForm" action="#" method="POST" autocomplete="off">
+    <label for="name">Имя</label>
+    <input type="text" id="name" name="name" required placeholder="Ваше имя" />
+
+    <label for="phone">Номер телефона</label>
+    <input type="tel" id="phone" name="phone" required placeholder="+7 (___) ___-__-__" pattern="^\+7\s?\(?\d{3}\)?\s?\d{3}[- ]?\d{2}[- ]?\d{2}$" />
+
+    <label for="service">Услуга</label>
+    <select id="service" name="service" required>
+      <option value="" disabled selected>Выберите услугу</option>
+      <option value="Стрижка мужская">Стрижка мужская — 1 700 ₽</option>
+      <option value="Стрижка под машинку с одной насадкой">Стрижка под машинку с одной насадкой — 1 200 ₽</option>
+      <option value="Стрижка машинкой несколько насадок">Стрижка машинкой нескольо насадок — 900 ₽</option>
+      <option value="Детская стрижка (до 12 лет)">Детская стрижка (до 12 лет) — 1 200 ₽</option>
+      <option value="Удлиненная мужская стрижка">Удлиненная мужская стрижка — 1 800 ₽</option>
+      <option value="Моделирование бороды">Моделирование бороды — 1 100 ₽</option>
+      <option value="Стрижка усов и бороды">Стрижка усов и бороды — 1 000 ₽</option>
+      <option value="Королевское бритьё головы">Королевское бритьё головы — 1 700 ₽</option>
+      <option value="Королевское бритьё">Королевское бритьё — 1 800 ₽</option>
+      <option value="Стрижка отца и сына">Стрижка отца и сына — 2 500 ₽</option>
+      <option value="Мужская стрижка + камуфляж">Мужская стрижка + камуфляж — 2 100 ₽</option>
+      <option value="Стрижка мужская и моделирование бороды">Стрижка мужская и моделирование бороды — 2 300 ₽</option>
+      <option value="Стрижка мужская + стрижка усов и бороды">Стрижка мужская + стрижка усов и бороды — 2 100 ₽</option>
+      <option value="Стрижка друг + друг у одного мастера">Стрижка друг + друг у одного мастера — 2 500 ₽</option>
+      <option value="Моделирование бороды и горячий воск">Моделирование бороды и горячий воск — 1 500 ₽</option>
+    </select>
+
+    <label for="date">Дата</label>
+    <input type="date" id="date" name="date" required min="" />
+
+    <label for="time">Время</label>
+    <input type="time" id="time" name="time" required min="09:00" max="20:00" step="900" />
+
+    <button type="submit">Записаться</button>
+  </form>
+</div>
+
+<script>
+  // Установим минимальную дату - сегодня
+  const dateInput = document.getElementById('date');
+  const today = new Date().toISOString().split('T')[0];
+  dateInput.min = today;
+
+  // Ограничение по времени работы 9:00 - 20:00, шаг 15 минут уже в input
+
+  // Получение параметра service из URL
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
+  const selectedService = getQueryParam('service');
+  const serviceSelect = document.getElementById('service');
+
+  if(selectedService) {
+    // Попытка выбрать заданную услугу в селекте
+    for(let option of serviceSelect.options) {
+      if(option.value === selectedService) {
+        option.selected = true;
+        break;
+      }
+    }
+    // Заблокировать выбор услуги
+    serviceSelect.disabled = true;
+  }
+
+  // Форма может быть подключена к отправке на сервер (например, AJAX),
+  // здесь пример вывода данных в консоль и блокировки отправки
+
+  document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Спасибо за вашу заявку! Мы с вами свяжемся.');
+    // Здесь код отправки данных на сервер
+    this.reset();
+
+    // Если нужно, разблокируем выбор услуги после отправки
+    if(selectedService) {
+      serviceSelect.disabled = false;
+      serviceSelect.selectedIndex = 0;
+    }
+  });
+</script>
+
+</body>
+</html>

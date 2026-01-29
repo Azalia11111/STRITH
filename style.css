@@ -1,0 +1,403 @@
+body {
+  margin: 0;
+  background-color: #2e2e2e;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Фиксированный header с адаптивными отступами */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #1e1e1e;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-sizing: border-box;
+  user-select: none;
+  z-index: 1000;
+}
+
+/* Логотип с уменьшенным шрифтом и улучшенной читаемостью */
+.logo {
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.1;
+  cursor: default;
+  letter-spacing: 1.5px;
+}
+
+.logo small {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  margin-top: 2px;
+  opacity: 0.7;
+  text-transform: uppercase;
+}
+
+/* Навигация — выравнивание по центру и компактный отступ */
+nav {
+  display: flex;
+  gap: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  align-items: center;
+}
+
+/* Ссылки навигации оптимизированы для тача */
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  user-select: none;
+  white-space: nowrap;
+}
+
+nav a:hover {
+  background-color: #ff7f00;
+  color: #2e2e2e;
+}
+
+/* Специальный стиль для кнопки записи */
+nav a.booking {
+  border: 2px solid white;
+  padding: 5px 16px;
+  border-radius: 4px;
+  font-weight: 700;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+nav a.booking:hover {
+  background-color: white;
+  color: #2e2e2e;
+  border-color: #ff7f00;
+}
+
+/* Баннер с адаптивной высотой и контентом */
+.banner {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin-top: 60px; /* Отступ под фиксированным меню */
+  padding: 0 15px;
+}
+
+/* Фоновое изображение с прозрачностью и адаптивной высотой */
+.banner img.background {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  opacity: 0.1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* Контент баннера — вертикальный стэк и выравнивание */
+.banner .content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 0;
+}
+
+/* Логотип в баннере с ограничением по ширине */
+.banner .content img.logo {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin-bottom: 20px;
+  margin-right: 0;
+}
+
+/* Текст с адаптивным размером и шириной */
+.banner .content .text {
+  width: 100%;
+  max-width: 100%;
+  font-weight: 400;
+}
+
+/* Заголовок и параграфы — читаемые размеры */
+.banner .content .text h1 {
+  margin: 0 0 25px 0;
+  font-size: 26px;
+  line-height: 1.2;
+  color: #ffffff;
+}
+
+.banner .content .text p {
+  margin: 5px 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Кнопка записи — большая, удобная для нажатия */
+.btn-signup {
+  margin-top: 30px;
+  padding: 12px 25px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #ff6600;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 320px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-signup:hover {
+  background-color: #e65c00;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(230, 92, 0, 0.3);
+}
+
+/* Анимация текста - простая, читаемая на маленьком экране */
+.animated-text p {
+  font-size: 20px;
+  margin: 20px 10px 40px 10px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s forwards;
+}
+
+.animated-text p:nth-child(1) {
+  animation-delay: .2s; 
+}
+.animated-text p:nth-child(2) {
+  animation-delay: .5s; 
+}
+.animated-text p:nth-child(3) {
+  animation-delay: .8s; 
+}
+
+/* Медиа-запрос для телефонов */
+@media (max-width: 480px) {
+  header {
+    padding: 15px 20px;
+  }
+  .logo {
+    font-size: 20px;
+    letter-spacing: 1.5px;
+  }
+  nav {
+    gap: 15px;
+    font-size: 14px;
+  }
+  nav a {
+    padding: 6px 12px;
+  }
+  .banner {
+    margin-top: 50px;
+    padding: 0 10px;
+  }
+  .banner .content {
+    flex-direction: column;
+    align-items: center;
+    padding-left: 0;
+  }
+  .banner .content img.logo {
+    max-width: 280px;
+    margin-bottom: 20px;
+    margin-right: 0;
+  }
+  .banner .content .text h1 {
+    font-size: 22px;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+  .banner .content .text p {
+    font-size: 14px;
+    text-align: center;
+  }
+  .btn-signup {
+    width: 100%;
+    max-width: 320px;
+    font-size: 16px;
+    padding: 12px 25px;
+  }
+  .animated-text p {
+    font-size: 18px;
+    margin: 15px 10px 30px 10px;
+  }
+}
+
+/* ====== Прайс-страница ====== */
+.price-page { 
+    padding-top: calc(80px + (120 -80) * ((100vw -320px) / (1600 -320))); 
+    min-height:100vh; 
+    background: linear-gradient(180deg,#232323, #1b1b1b); 
+    color:#fff; 
+}
+
+.price-hero {
+    padding: calc(20px + (40 -20) * ((100vw -320px) / (1600 -320))) calc(15px + (30 -15) * ((100vw -320px) / (1600 -320))); /* Адаптивные отступы */
+    display:flex; 
+    justify-content:center; 
+    align-items:center; 
+    backdrop-filter: blur(4px);
+}
+.price-hero .hero-inner { 
+    max-width :1100px; 
+    width :100%; 
+    text-align:center; 
+}
+.price-hero h1 { 
+    margin :0; 
+    font-size :calc(24px + (36 -24) * ((100vw -320px) / (1600 -320))); /* Адаптивный размер шрифта */ 
+    letter-spacing :1px; 
+}
+.price-hero .subtitle { 
+    margin :8px auto; 
+    color :#d6d6d6; 
+}
+
+/* Табы */
+.tabs { display: inline-flex; gap: 10px; background: rgba(255,255,255,0.03); padding: 8px; border-radius: 12px; box-shadow: 0 6px 24px rgba(0,0,0,0.6); }
+.tab-btn {
+  background: transparent;
+  border: none;
+  color: #d0d0d0;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all .25s ease;
+}
+.tab-btn.active {
+  background: linear-gradient(90deg,#ff7f00,#ff6600);
+  color: #1b1b1b;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(255,110,40,0.18);
+}
+
+/* Контент прайса */
+.price-content { max-width: 1100px; margin: 30px auto 80px; padding: 0 20px; }
+.price-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.service-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.05);
+  padding: 18px;
+  border-radius: 14px;
+  transition: transform .25s ease, box-shadow .25s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.55);
+}
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.65);
+}
+.service-card h3 { margin: 0 0 8px 0; font-size: 18px; color: #fff; }
+.service-card .price { font-weight: 800; color: #ffb07a; font-size: 18px; margin-bottom: 8px; }
+.service-card .desc { margin: 0; color: #d0d0d0; font-size: 14px; }
+
+/* скрытые табы */
+.hidden { display: none; }
+
+/* фиксированная кнопка записаться */
+.floating-book {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  background: linear-gradient(90deg,#ff7f00,#ff6600);
+  color: #1b1b1b;
+  padding: 14px 22px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 800;
+  box-shadow: 0 12px 36px rgba(255,110,40,0.18);
+  transition: transform .18s ease;
+  z-index: 1200;
+}
+.floating-book:hover { transform: translateY(-6px); }
+
+/* адаптив */
+@media (max-width: 900px) {
+  .price-grid { grid-template-columns: 1fr; }
+  .price-hero h1 { font-size: 26px; }
+  .tabs { gap: 8px; padding: 6px; }
+}
+.tagline-block{ width:100%; padding:48px 20px; box-sizing:border-box; display:flex; justify-content:center; background:transparent; }
+.tagline-wrap{ max-width:1100px; width:100%; display:flex; justify-content:center; }
+.tagline{ margin:0; font-size:20px; font-weight:700; color:transparent;
+  background:linear-gradient(90deg,#fff 0%,#ffd0a0 60%,#ff7f00 100%);
+  -webkit-background-clip:text; background-clip:text; position:relative; padding-left:14px; animation:fadeInUp .9s both;
+}
+.tagline::before{ content:""; width:8px; height:42px; display:inline-block; margin-right:12px; border-radius:6px;
+  background:linear-gradient(180deg,#ff7f00,#ff6600); box-shadow:0 8px 20px rgba(255,110,40,0.18); vertical-align:middle;}
+@media(max-width:900px){ .tagline{ font-size:18px } .tagline::before{ height:34px; width:6px; margin-right:10px; } }
+.about-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    color: white;
+    height: 700px; /* Увеличиваем высоту секции */
+}
+
+.about-section::before {
+    content: ""; /* Создаем пустой контент для псевдоэлемента */
+    position: absolute; /* Абсолютное позиционирование */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('5.jpg'); /* Фоновое изображение */
+    background-size: cover; /* Заполнение фона */
+    background-position: center; /* Центрирование изображения */
+    opacity: 0.2; /* Уровень прозрачности (20%) */
+    z-index: -1; /* Помещаем псевдоэлемент позади текста */
+}
+
+.about-content {
+    max-width: 1000px; /* Максимальная ширина блока с текстом */
+    background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный черный фон для текста */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.about-content h2 {
+    font-size: 2em; /* Размер заголовка */
+    margin-bottom: 20px; /* Отступ снизу */
+}
+
+
+.about-content p {
+    font-size: 1.1em; /* Размер текста */
+    line-height: 1.6; /* Межстрочный интервал */
+    margin-bottom: 15px; /* Отступ между абзацами */
+}
+.modal {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center;
+  z-index: 1000;
+}
+.modal-content {
+  background: #fff; padding: 20px; border-radius: 8px; width: 300px; position: relative;
+}
+.hidden { display: none; }
+.close {
+  position: absolute; top: 10px; right: 15px; font-size: 24px;
+  cursor: pointer;
+}
+.floating-book {
+  position: fixed; bottom: 20px; right: 20px;
+  background: #ff9500; color: #fff; padding: 10px 20px; border-radius: 25px;
+  text-decoration: none; font-weight: bold;
+}
